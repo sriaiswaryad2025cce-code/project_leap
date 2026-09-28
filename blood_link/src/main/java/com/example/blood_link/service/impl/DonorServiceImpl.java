@@ -40,4 +40,29 @@ public class DonorServiceImpl implements DonorService {
     public List<Donor> searchDonors(String bloodGroup, String city) {
         return donorRepository.findByBloodGroupAndCity(bloodGroup, city);
     }
+
+    // PUT - Update donor
+    @Override
+    public Donor updateDonor(Long id, Donor donor) {
+
+        Donor existingDonor = donorRepository.findById(id).orElse(null);
+
+        if (existingDonor == null) {
+            return null;
+        }
+
+        existingDonor.setName(donor.getName());
+        existingDonor.setBloodGroup(donor.getBloodGroup());
+        existingDonor.setCity(donor.getCity());
+        existingDonor.setLastDonationDate(donor.getLastDonationDate());
+        existingDonor.setAvailable(donor.isAvailable());
+
+        return donorRepository.save(existingDonor);
+    }
+
+    // DELETE - Delete donor
+    @Override
+    public void deleteDonor(Long id) {
+        donorRepository.deleteById(id);
+    }
 }

@@ -15,4 +15,10 @@ public interface DonorService {
     List<Donor> getByCity(String city);
 
     List<Donor> searchDonors(String bloodGroup, String city);
+
+    // PUT
+    Donor updateDonor(Long id, Donor donor);
+
+    // DELETE
+    void deleteDonor(Long id);
 }

@@ -53,4 +53,22 @@ public class DonorController {
 
         return donorService.searchDonors(bloodGroup, city);
     }
+
+    // 6. Update donor
+    @PutMapping("/{id}")
+    public Donor updateDonor(
+            @PathVariable Long id,
+            @RequestBody Donor donor) {
+
+        return donorService.updateDonor(id, donor);
+    }
+
+    // 7. Delete donor
+    @DeleteMapping("/{id}")
+    public String deleteDonor(@PathVariable Long id) {
+
+        donorService.deleteDonor(id);
+
+        return "Donor deleted successfully";
+    }
 }
